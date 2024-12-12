@@ -3,19 +3,17 @@ import sqlite3 from "sqlite3";
 const db = new sqlite3.Database("./database.sqlite");
 
 const initializeDB = async () => {
-    await dbRun("DROP TABLE users")
-    await dbRun("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, email TEXT, class TEXT)");
+    await dbRun("DROP TABLE products")
+    await dbRun("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, picture TEXT, price REAL)");
 
-    const users = [
-         { firstName: "John", lastName: "Doe", email: "john.doe@example.com", class: "9.b" },
-         { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", class: "10.b" },
-         { firstName: "Sam", lastName: "Johnson", email: "sam.johnson@example.com", class: "11.b" },
-         { firstName: "Nagy", lastName: "Lajos", email: "nagy.lajos@example.com", class: "12.b" },
-         { firstName: "Krisztin", lastName: "Sándor", email: "krisztin.sandor@example.com", class: "13.b" },
+    const products = [
+         { name: "játékautó", description: "kicsi", picture: "piros kicsi játékauto", price: 1200 },
+         { name: "könyv", description: "200 oldal", picture: "200 oldalas töri könyv", price: 4300 },
+         { name: "pulúver", description: "L méretű", picture: "L méretű téli pulóver", price: 12000 },
     ];
 
-    for (const user of users) {
-         await dbRun("INSERT INTO users (firstName, lastName, email, class) VALUES (?, ?, ?, ?)", [user.firstName, user.lastName, user.email, user.class]);
+    for (const product of products) {
+         await dbRun("INSERT INTO products (name, description, picture, price) VALUES (?, ?, ?, ?)", [product.name, product.description, product.picture, product.price]);
     }
 };
 

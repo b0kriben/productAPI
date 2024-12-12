@@ -1,13 +1,13 @@
 import swaggerAutogen from 'swagger-autogen';
 const doc = {
   info: {
-    title: 'Users API',
+    title: 'Products API',
     version: "1.0.0",
-    description: 'Users API'
+    description: 'Products API'
   },
   host: 'localhost:3000',
-  basePath: "/api/users"
+  basePath: "/api/products"
 };
 const outputFile = './swagger-output.json';
-const routes = ['./routes/users.js'];
+const routes = ['./routes/products.js'];
 swaggerAutogen()(outputFile, routes, doc);
